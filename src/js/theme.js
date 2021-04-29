@@ -11,19 +11,24 @@ function changeBackground(evt) {
 }
 
 function changeDarkOnLight () {
-    refs.body.classList.remove(DARK);
-    refs.body.classList.add(LIGHT);
-    localStorage.setItem('theme', LIGHT);
-    refs.tumbler.checked = false;
+    updateDome (DARK,LIGHT,false);
+    savedInlocalStorage(LIGHT);  
 }
 
 function changeLightOnDark () {
-    refs.body.classList.remove(LIGHT);
-    refs.body.classList.add(DARK);
-    localStorage.setItem('theme', DARK);
-    refs.tumbler.checked = true;
+    updateDome (LIGHT,DARK,true);
+    savedInlocalStorage(DARK);  
 }
 
+function updateDome (oldClass,newClass,state){
+    refs.body.classList.remove(oldClass);
+    refs.body.classList.add(newClass);
+    refs.tumbler.checked = state;
+}
+
+function  savedInlocalStorage(themeName) {
+    localStorage.setItem('theme', themeName);
+}
 
 currentTheme();
 
